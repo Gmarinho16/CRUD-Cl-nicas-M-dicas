@@ -1,9 +1,10 @@
-const express = require('express');
-const Clinica = require('../models/Clinica');
+const express = require("express");
+const Clinica = require("../models/Clinica");
 
 const router = express.Router();
 
-router.post('/criar', async (req, res) => {
+// CREATE - Adicionar nova clínica
+router.post("/criar", async (req, res) => {
   try {
     const novaClinica = new Clinica(req.body);
     const clinicaSalva = await novaClinica.save();
@@ -13,7 +14,8 @@ router.post('/criar', async (req, res) => {
   }
 });
 
-router.get('/listar', async (req, res) => {
+// READ - Listar todas as clínicas
+router.get("/listar", async (req, res) => {
   try {
     const clinicas = await Clinica.find();
     res.status(200).json(clinicas);
@@ -22,11 +24,12 @@ router.get('/listar', async (req, res) => {
   }
 });
 
-router.get('/:id', async (req, res) => {
+// READ - Buscar clínica por ID
+router.get("/:id", async (req, res) => {
   try {
     const clinica = await Clinica.findById(req.params.id);
     if (!clinica) {
-      return res.status(404).json({ message: 'Clínica não encontrada' });
+      return res.status(404).json({ message: "Clínica não encontrada" });
     }
     res.status(200).json(clinica);
   } catch (error) {
@@ -34,11 +37,16 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.put('/atualizar/:id', async (req, res) => {
+// UPDATE - Atualizar dados de uma clínica
+router.put("/atualizar/:id", async (req, res) => {
   try {
-    const clinicaAtualizada = await Clinica.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const clinicaAtualizada = await Clinica.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
     if (!clinicaAtualizada) {
-      return res.status(404).json({ message: 'Clínica não encontrada' });
+      return res.status(404).json({ message: "Clínica não encontrada" });
     }
     res.status(200).json(clinicaAtualizada);
   } catch (error) {
@@ -46,13 +54,14 @@ router.put('/atualizar/:id', async (req, res) => {
   }
 });
 
-router.delete('/deletar/:id', async (req, res) => {
+// DELETE - Remover uma clínica
+router.delete("/deletar/:id", async (req, res) => {
   try {
     const clinicaRemovida = await Clinica.findByIdAndDelete(req.params.id);
     if (!clinicaRemovida) {
-      return res.status(404).json({ message: 'Clínica não encontrada' });
+      return res.status(404).json({ message: "Clínica não encontrada" });
     }
-    res.status(200).json({ message: 'Clínica removida com sucesso' });
+    res.status(200).json({ message: "Clínica removida com sucesso" });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
