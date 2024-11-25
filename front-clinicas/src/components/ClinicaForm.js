@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import api from '../services/api';
+import React, { useState } from "react";
+import api from "../services/api";
 
 const ClinicaForm = ({ clinicaExistente }) => {
   const [clinica, setClinica] = useState(
-    clinicaExistente || { nome: '', endereco: '', telefone: '' }
+    clinicaExistente || { nome: "", endereco: "", telefone: "" }
   );
 
   const handleChange = (e) => {
@@ -17,12 +17,12 @@ const ClinicaForm = ({ clinicaExistente }) => {
       if (clinica._id) {
         await api.put(`/atualizar/${clinica._id}`, clinica);
       } else {
-        await api.post('/criar', clinica);
+        await api.post("/criar", clinica);
       }
-      alert('Clínica salva com sucesso!');
+      alert("Clínica salva com sucesso!");
     } catch (error) {
-      console.error('Erro ao salvar clínica:', error);
-      alert('Erro ao salvar clínica.');
+      console.error("Erro ao salvar clínica:", error);
+      alert("Erro ao salvar clínica.");
     }
   };
 

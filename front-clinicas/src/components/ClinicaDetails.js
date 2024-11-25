@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import api from '../services/api';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import api from "../services/api";
 
 const ClinicaDetails = () => {
   const { id } = useParams();
@@ -12,7 +12,7 @@ const ClinicaDetails = () => {
         const response = await api.get(`/${id}`);
         setClinica(response.data);
       } catch (error) {
-        console.error('Erro ao buscar clínica:', error);
+        console.error("Erro ao buscar clínica:", error);
       }
     };
     fetchClinica();
@@ -23,8 +23,12 @@ const ClinicaDetails = () => {
       {clinica ? (
         <div>
           <h1>{clinica.nome}</h1>
-          <p><strong>Endereço:</strong> {clinica.endereco}</p>
-          <p><strong>Telefone:</strong> {clinica.telefone}</p>
+          <p>
+            <strong>Endereço:</strong> {clinica.endereco}
+          </p>
+          <p>
+            <strong>Telefone:</strong> {clinica.telefone}
+          </p>
         </div>
       ) : (
         <p>Carregando...</p>

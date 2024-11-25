@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import api from '../services/api';
+import React, { useEffect, useState } from "react";
+import api from "../services/api";
 
 const ClinicaList = () => {
   const [clinicas, setClinicas] = useState([]);
@@ -7,10 +7,10 @@ const ClinicaList = () => {
   useEffect(() => {
     const fetchClinicas = async () => {
       try {
-        const response = await api.get('/listar');
+        const response = await api.get("/listar");
         setClinicas(response.data);
       } catch (error) {
-        console.error('Erro ao buscar clínicas:', error);
+        console.error("Erro ao buscar clínicas:", error);
       }
     };
     fetchClinicas();
