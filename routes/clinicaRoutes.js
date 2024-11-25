@@ -3,7 +3,7 @@ const Clinica = require("../models/Clinica");
 
 const router = express.Router();
 
-// CREATE - Adicionar nova clínica
+// CREATE
 router.post("/criar", async (req, res) => {
   try {
     const novaClinica = new Clinica(req.body);
@@ -14,7 +14,7 @@ router.post("/criar", async (req, res) => {
   }
 });
 
-// READ - Listar todas as clínicas
+// READ
 router.get("/listar", async (req, res) => {
   try {
     const clinicas = await Clinica.find();
@@ -24,7 +24,7 @@ router.get("/listar", async (req, res) => {
   }
 });
 
-// READ - Buscar clínica por ID
+// READ
 router.get("/:id", async (req, res) => {
   try {
     const clinica = await Clinica.findById(req.params.id);
@@ -37,7 +37,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// UPDATE - Atualizar dados de uma clínica
+// UPDATE
 router.put("/atualizar/:id", async (req, res) => {
   try {
     const clinicaAtualizada = await Clinica.findByIdAndUpdate(
@@ -54,7 +54,7 @@ router.put("/atualizar/:id", async (req, res) => {
   }
 });
 
-// DELETE - Remover uma clínica
+// DELETE
 router.delete("/deletar/:id", async (req, res) => {
   try {
     const clinicaRemovida = await Clinica.findByIdAndDelete(req.params.id);
